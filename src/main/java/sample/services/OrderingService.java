@@ -45,6 +45,22 @@ public class OrderingService implements OrderingServiceInterface {
         repository.save(orderingEntity);
     }
 
+    public void saveNewEntity(OrderingEntity orderingEntity) {
+        int k = 1;
+        List<OrderingEntity> orderingEntities = repository.findAllEntities();
+        for (OrderingEntity orderingEntity1 : orderingEntities) {
+            if (orderingEntity1.getId() > k) {
+                orderingEntity.setId(k);
+                save(orderingEntity);
+                return;
+            }
+            k++;
+        }
+        orderingEntity.setId(k);
+        save(orderingEntity);
+        return;
+    }
+
     @Override
     public void deleteById(int id) {
         repository.deleteById(id);

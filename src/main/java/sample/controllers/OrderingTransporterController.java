@@ -67,14 +67,22 @@ public class OrderingTransporterController {
     public void buttonSetPriceOnAction(ActionEvent event) {
         if (textFieldSetPrice.getText() != "") {
             int price = (int) Integer.valueOf(textFieldSetPrice.getText());
-            if (price < orderingEntityThis.getPrice()) {
+            if (orderingEntityThis.getPrice() !=null) {
+                if (price < orderingEntityThis.getPrice()) {
+                    orderingEntityThis.setAccepted(false);
+                    orderingEntityThis.setPrice(Integer.valueOf(textFieldSetPrice.getText()));
+                    orderingEntityThis.setIdTransporter(transporterEntityThis.getId());
+                    orderingService.save(orderingEntityThis);
+                    stageThis.close();
+                } else {
+                    textFieldSetPrice.setText("");
+                }
+            } else {
                 orderingEntityThis.setAccepted(false);
                 orderingEntityThis.setPrice(Integer.valueOf(textFieldSetPrice.getText()));
                 orderingEntityThis.setIdTransporter(transporterEntityThis.getId());
                 orderingService.save(orderingEntityThis);
                 stageThis.close();
-            } else {
-                textFieldSetPrice.setText("");
             }
         }else {
             textFieldSetPrice.setText("");
@@ -83,7 +91,6 @@ public class OrderingTransporterController {
 
     @FXML
     private void textFieldSetPriceOnKeyTyped(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getCharacter());
         if (keyEvent.getCharacter().charAt(0) >= '0' && keyEvent.getCharacter().charAt(0) <= '9') {
 
         }else {
@@ -108,6 +115,7 @@ public class OrderingTransporterController {
                         labelSupplierName.setText(factoryService.findEntityById(orderingEntityThis.getIdFactoryFrom()).getName());
                         labelPriceValue.setText(String.valueOf(orderingEntityThis.getPrice()));
                         //TODO
+                        labelDistance.setText(String.valueOf(orderingEntityThis.getDistance()));
                         accepted=orderingEntityThis.isAccepted();
                         if (accepted) {
                             labelTransporter.setText(transporterService.findEntityById(orderingEntityThis.getIdTransporter()).getName());

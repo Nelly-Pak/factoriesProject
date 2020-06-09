@@ -18,6 +18,8 @@ public interface OrderingServiceInterface {
 
     public List<OrderingEntity> findEntitiesWithoutIdTransporterUnaccepted(int idTransporter);
 
+    public void saveNewEntity(OrderingEntity orderingEntity);
+
     void save(OrderingEntity orderingEntity);
 
     void deleteById(int id);

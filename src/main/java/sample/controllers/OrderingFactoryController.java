@@ -87,6 +87,7 @@ public class OrderingFactoryController {
                         labelSupplierName.setText(factoryService.findEntityById(orderingEntityThis.getIdFactoryFrom()).getName());
                         labelPriceValue.setText(String.valueOf(orderingEntityThis.getPrice()));
                         //TODO
+                        labelDistance.setText(String.valueOf(orderingEntityThis.getDistance()));
                         accepted=orderingEntityThis.isAccepted();
                         if (accepted) {
                             labelTransporter.setText(transporterService.findEntityById(orderingEntityThis.getIdTransporter()).getName());

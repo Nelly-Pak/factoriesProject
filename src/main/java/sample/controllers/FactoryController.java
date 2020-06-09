@@ -77,6 +77,7 @@ public class FactoryController {
         stage.setTitle(factoryEntityThis.getName());
         stage.setScene(scene);
         stage.showAndWait();
+        System.out.println("SHowAndWaitENDED");
         updateListViewAcceptedOrders();
         updateListViewUnacceptedOrders();
     }

@@ -7,7 +7,6 @@ import java.util.Objects;
 @Table(name = "ordering", schema = "maindb", catalog = "")
 public class OrderingEntity {
     @Id
-    @GeneratedValue
     @Column(name = "id", nullable = false)
     private int id;
 
@@ -103,7 +102,6 @@ public class OrderingEntity {
         this.distance = distance;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,15 +111,17 @@ public class OrderingEntity {
                 accepted == that.accepted &&
                 idFactory == that.idFactory &&
                 idProduct == that.idProduct &&
-                idTransporter == that.idTransporter &&
                 idFactoryFrom == that.idFactoryFrom &&
-                price.equals(that.price);
+                price.equals(that.price) &&
+                idTransporter.equals(that.idTransporter) &&
+                distance.equals(that.distance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, accepted, idFactory, idProduct, idTransporter, idFactoryFrom);
+        return Objects.hash(id, price, accepted, idFactory, idProduct, idTransporter, idFactoryFrom, distance);
     }
+
 
     /*
     @ManyToOne(targetEntity=FactoryEntity.class, fetch = FetchType.EAGER,optional = false)

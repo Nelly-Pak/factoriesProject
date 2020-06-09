@@ -52,7 +52,7 @@ public class OrderingCreateController {
 
     private FactoryEntity factoryEntityThis;
 
-    private OrderingEntity orderingEntityNew = new OrderingEntity();
+    private OrderingEntity orderingEntityNew = null;
 
     private void updateSplitButtonMenu() {
         splitMenuButtonSetProduct.getItems().clear();
@@ -60,6 +60,7 @@ public class OrderingCreateController {
         for (ProductEntity productEntity: productEntityList) {
             MenuItem choice = new MenuItem(productEntity.getName());
             choice.setOnAction((e) -> {
+                orderingEntityNew = new OrderingEntity();
                 labelProduct.setText(productEntity.getName());
                 labelCustomer.setText(factoryEntityThis.getName());
                 List<FactoryEntity> factoryEntities = factoryService.findEntitiesByProductIdWithoutFactoryId(productEntity.getId(), factoryEntityThis.getId());
@@ -72,7 +73,8 @@ public class OrderingCreateController {
                         min = weight;
                         factoryEntityShortestWay = factoryEntity;
                         labelSupplier.setText(factoryEntityShortestWay.getName());
-                        orderingEntityNew.setIdFactoryFrom(factoryEntity.getId());
+                        orderingEntityNew.setIdFactoryFrom(factoryEntityShortestWay.getId());
+                        labelDistance.setText(String.valueOf(min));
                         //TODO
                     }
                 }
@@ -81,6 +83,7 @@ public class OrderingCreateController {
                 orderingEntityNew.setPrice(null);
                 orderingEntityNew.setIdFactory(factoryEntityThis.getId());
                 orderingEntityNew.setIdProduct(productEntity.getId());
+                orderingEntityNew.setDistance(min);
             });
             splitMenuButtonSetProduct.getItems().add(choice);
         }
@@ -92,8 +95,10 @@ public class OrderingCreateController {
 
     @FXML
     private void buttonCreateOrderOnAction(ActionEvent event) {
-
-        stageThis.close();
+        if (orderingEntityNew != null) {
+            orderingService.saveNewEntity(orderingEntityNew);
+            stageThis.close();
+        }
     }
 
     @FXML
