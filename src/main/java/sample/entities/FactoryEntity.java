@@ -8,7 +8,6 @@ import java.util.Set;
 @Table(name = "factory", schema = "maindb", catalog = "")
 public class FactoryEntity {
     @Id
-    @GeneratedValue
     @Column(name = "id", nullable = false)
     private int id;
 

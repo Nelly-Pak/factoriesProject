@@ -12,5 +12,11 @@ public interface ProductServiceInterface {
 
     public ProductEntity findEntityByName(String name);
 
-    void save(ProductEntity productEntity);
+    public void save(ProductEntity productEntity);
+
+    public void delete(ProductEntity productEntity);
+
+    public void saveNewEntity(ProductEntity productEntity);
+
+
 }

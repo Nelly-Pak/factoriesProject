@@ -1,5 +1,6 @@
 package sample.services;
 
+import sample.entities.OrderingEntity;
 import sample.entities.ProductEntity;
 import sample.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,26 @@ public class ProductService implements ProductServiceInterface{
     @Override
     public void save(ProductEntity productEntity) {
         repository.save(productEntity);
+    }
+
+    @Override
+    public void delete(ProductEntity productEntity) {
+        repository.delete(productEntity);
+    }
+
+    public void saveNewEntity(ProductEntity productEntity) {
+        int k = 1;
+        List<ProductEntity> productEntities = repository.findAllEntities();
+        for (ProductEntity productEntity1 : productEntities) {
+            if (productEntity1.getId() > k) {
+                productEntity.setId(k);
+                save(productEntity);
+                return;
+            }
+            k++;
+        }
+        productEntity.setId(k);
+        save(productEntity);
+        return;
     }
 }

@@ -1,6 +1,8 @@
 package sample.services;
 
 import sample.entities.FactoryEntity;
+import sample.entities.OrderingEntity;
+import sample.entities.ProductEntity;
 import sample.repositories.FactoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +43,35 @@ public class FactoryService implements FactoryServiceInterface{
     }
 
     @Override
+    public void delete(FactoryEntity factoryEntity) {
+        repository.delete(factoryEntity);
+    }
+
+    public List<FactoryEntity> findAllEntities() {
+        return repository.findAllEntities();
+    }
+
+    @Override
     public void save(FactoryEntity factoryEntity) {
         repository.save(factoryEntity);
     }
+
+    public void saveNewEntity(FactoryEntity factoryEntity) {
+        int k = 1;
+        List<FactoryEntity> factoryEntities = repository.findAllEntities();
+        //System.out.println("SIZE " + factoryEntities.size());
+        for (FactoryEntity factoryEntity1: factoryEntities) {
+            if (factoryEntity1.getId() > k) {
+                factoryEntity.setId(k);
+                save(factoryEntity);
+                return;
+            }
+            k++;
+        }
+        //System.out.println("K= " + k);
+        factoryEntity.setId(k);
+        save(factoryEntity);
+        return;
+    }
+
 }

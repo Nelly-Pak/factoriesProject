@@ -34,6 +34,8 @@ public class OrderingCreateController {
     private Label labelSupplier;
     @FXML
     private Label labelDistance;
+    @FXML
+    private Button buttonCreateOrder;
 
 
     @Autowired
@@ -64,26 +66,33 @@ public class OrderingCreateController {
                 labelProduct.setText(productEntity.getName());
                 labelCustomer.setText(factoryEntityThis.getName());
                 List<FactoryEntity> factoryEntities = factoryService.findEntitiesByProductIdWithoutFactoryId(productEntity.getId(), factoryEntityThis.getId());
-                int min = Integer.MAX_VALUE;
-                FactoryEntity factoryEntityShortestWay;
-                for (FactoryEntity factoryEntity: factoryEntities) {
-                    int weight = factoryService.shortestWayWeight(factoryEntityThis.getId(), factoryEntity.getId());
-                    System.out.println(ShortestWay(factoryEntityThis.getId(), factoryEntity.getId()));
-                    if (weight <= min) {
-                        min = weight;
-                        factoryEntityShortestWay = factoryEntity;
-                        labelSupplier.setText(factoryEntityShortestWay.getName());
-                        orderingEntityNew.setIdFactoryFrom(factoryEntityShortestWay.getId());
-                        labelDistance.setText(String.valueOf(min));
-                        //TODO
+                if (factoryEntities.size() != 0) {
+                    buttonCreateOrder.setDisable(false);
+                    int min = Integer.MAX_VALUE;
+                    FactoryEntity factoryEntityShortestWay;
+                    for (FactoryEntity factoryEntity : factoryEntities) {
+                        int weight = factoryService.shortestWayWeight(factoryEntityThis.getId(), factoryEntity.getId());
+                        System.out.println(ShortestWay(factoryEntityThis.getId(), factoryEntity.getId()));
+                        if (weight <= min) {
+                            min = weight;
+                            factoryEntityShortestWay = factoryEntity;
+                            labelSupplier.setText(factoryEntityShortestWay.getName());
+                            orderingEntityNew.setIdFactoryFrom(factoryEntityShortestWay.getId());
+                            labelDistance.setText(String.valueOf(min));
+                            //TODO
+                        }
                     }
+                    orderingEntityNew.setIdTransporter(null);
+                    orderingEntityNew.setAccepted(false);
+                    orderingEntityNew.setPrice(null);
+                    orderingEntityNew.setIdFactory(factoryEntityThis.getId());
+                    orderingEntityNew.setIdProduct(productEntity.getId());
+                    orderingEntityNew.setDistance(min);
+                }else {
+                    labelSupplier.setText("Can't find supplier for this product");
+                    labelDistance.setText("Can't find supplier for this product");
+                    buttonCreateOrder.setDisable(true);
                 }
-                orderingEntityNew.setIdTransporter(null);
-                orderingEntityNew.setAccepted(false);
-                orderingEntityNew.setPrice(null);
-                orderingEntityNew.setIdFactory(factoryEntityThis.getId());
-                orderingEntityNew.setIdProduct(productEntity.getId());
-                orderingEntityNew.setDistance(min);
             });
             splitMenuButtonSetProduct.getItems().add(choice);
         }
@@ -103,6 +112,7 @@ public class OrderingCreateController {
 
     @FXML
     private void initialize() {
+        buttonCreateOrder.setDisable(true);
         anchorPane.sceneProperty().addListener((observableScene, oldScene, newScene) -> {
             if (oldScene == null && newScene != null) {
                 // scene is set for the first time. Now its the time to listen stage changes.

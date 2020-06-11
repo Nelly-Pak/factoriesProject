@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends CrudRepository<ProductEntity, Integer>{
-    @Query("SELECT e FROM ProductEntity e")
+    @Query("SELECT e FROM ProductEntity e ORDER BY e.id")
     List<ProductEntity> findAllEntities();
 
     @Query("SELECT e FROM ProductEntity e WHERE e.name = :name")

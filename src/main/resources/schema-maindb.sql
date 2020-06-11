@@ -1,10 +1,15 @@
 CREATE SCHEMA if not exists public;
 CREATE DATABASE if not exists maindb;
 
+CREATE TABLE IF NOT EXISTS admin (
+id int not null AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(255) not null UNIQUE,
+password VARCHAR(255) not null
+);
+
 CREATE TABLE IF NOT EXISTS product (
 id int not null AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(255) not null UNIQUE,
-price_per_unit int
+name VARCHAR(255) not null UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS factory (
@@ -18,7 +23,6 @@ FOREIGN KEY (exportid) REFERENCES product(id)
 CREATE TABLE IF NOT EXISTS transporter (
 id int not null AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(255),
-price_per_unit integer,
 password VARCHAR(255)
 );
 

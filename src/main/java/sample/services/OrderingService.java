@@ -40,6 +40,16 @@ public class OrderingService implements OrderingServiceInterface {
         return repository.findAllOrderingEntitiesWithoutIdTransporterAndAcceptedFalse(idTransporter);
     }
 
+    public List<OrderingEntity> findEntitiesByIdTransporter(int idTransporter) {
+        return repository.findAllOrderingEntitiesByIdTransporter(idTransporter);
+    }
+
+    public List<OrderingEntity> findEntitiesByIdFactory(int idFactory) {
+        return repository.findAllOrderingEntitiesByIdFactory(idFactory);
+
+    }
+
+
     @Override
     public void save(OrderingEntity orderingEntity) {
         repository.save(orderingEntity);

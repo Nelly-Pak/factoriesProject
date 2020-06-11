@@ -137,7 +137,7 @@ public class TransporterController {
             if (mouseEvent.getClickCount() == 2) {
                 if (listViewAcceptedOrders.getItems().size() != 0) {
                     int orderIdFromListView = listViewAcceptedOrders.getSelectionModel().getSelectedIndex();
-                    if (orderIdFromListView <= orderingEntitiesAccepted.size()) {
+                    if (orderIdFromListView <= orderingEntitiesAccepted.size() && orderIdFromListView > -1) {
                         FxWeaver fxWeaver = JavaFxApplication.getFxWeaver();
                         Parent root = fxWeaver.loadView(OrderingTransporterController.class);
                         Scene scene = new Scene(root);
@@ -160,7 +160,7 @@ public class TransporterController {
             if (mouseEvent.getClickCount() == 2) {
                 if (listViewUnacceptedOrders.getItems().size() != 0) {
                     int orderIdFromListView = listViewUnacceptedOrders.getSelectionModel().getSelectedIndex();
-                    if (orderIdFromListView <= orderingEntitiesUnaccepted.size()) {
+                    if (orderIdFromListView <= orderingEntitiesUnaccepted.size() && orderIdFromListView > -1) {
                         FxWeaver fxWeaver = JavaFxApplication.getFxWeaver();
                         Parent root = fxWeaver.loadView(OrderingTransporterController.class);
                         Scene scene = new Scene(root);
@@ -183,7 +183,7 @@ public class TransporterController {
             if (mouseEvent.getClickCount() == 2) {
                 if (listViewBidedOrders.getItems().size() != 0) {
                     int orderIdFromListView = listViewBidedOrders.getSelectionModel().getSelectedIndex();
-                    if (orderIdFromListView <= orderingEntitiesBided.size()) {
+                    if (orderIdFromListView <= orderingEntitiesBided.size() && orderIdFromListView > -1) {
                         FxWeaver fxWeaver = JavaFxApplication.getFxWeaver();
                         Parent root = fxWeaver.loadView(OrderingTransporterController.class);
                         Scene scene = new Scene(root);

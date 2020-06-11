@@ -7,16 +7,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.LoginController">
+<AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.LoginController">
    <children>
       <RadioButton fx:id="radioButtonTransporter" layoutX="156.0" layoutY="34.0" mnemonicParsing="false" onAction="#radioButtonTransporterOnAction" text="As Transporter" />
          <Button fx:id="buttonClose" layoutX="57.0" layoutY="161.0" mnemonicParsing="false" onAction="#buttonCloseOnAction" text="Close" />
-      <TextField fx:id="textFieldUsername" layoutX="119.0" layoutY="73.0" promptText="Username" />
+      <TextField fx:id="textFieldUsername" layoutX="119.0" layoutY="73.0" prefHeight="26.0" prefWidth="256.0" promptText="Username" />
       <Label fx:id="labelUsername" layoutX="51.0" layoutY="78.0" text="Username" />
       <Label fx:id="labelPassword" layoutX="53.0" layoutY="121.0" text="Password" />
-      <Button fx:id="buttonLogin" layoutX="216.0" layoutY="161.0" mnemonicParsing="false" onAction="#buttonLoginOnAction" text="Login" />
+      <Button fx:id="buttonLogin" layoutX="306.0" layoutY="161.0" mnemonicParsing="false" onAction="#buttonLoginOnAction" text="Login" />
       <RadioButton fx:id="radioButtonFactory" layoutX="57.0" layoutY="34.0" mnemonicParsing="false" onAction="#radioButtonFactoryOnAction" selected="true" text="As Factory" />
       <Label layoutX="95.0" layoutY="6.0" text="Please, login in system" />
-      <PasswordField fx:id="passwordField" layoutX="119.0" layoutY="116.0" promptText="Password" />
+      <PasswordField fx:id="passwordField" layoutX="119.0" layoutY="116.0" prefHeight="26.0" prefWidth="256.0" promptText="Password" />
+      <RadioButton fx:id="radioButtonAdmin" layoutX="290.0" layoutY="34.0" mnemonicParsing="false" onAction="#radioButtonAdminOnAction" text="As Admin" />
    </children>
 </AnchorPane>

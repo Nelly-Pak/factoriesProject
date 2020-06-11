@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import sample.entities.FactoryEntity;
 
+
 import java.util.List;
 
 @Repository
@@ -23,5 +24,9 @@ public interface FactoryRepository extends CrudRepository<FactoryEntity, Integer
 
     @Query(value = "CALL maindb.Shortest_Way_Weight(:origidIN, :destidIN);", nativeQuery = true)
     int getShortestWayWeight(@Param("origidIN") int origidIN, @Param("destidIN") int destidIN);
+
+    @Query("SELECT e FROM FactoryEntity e")
+    List<FactoryEntity> findAllEntities();
+
 
 }

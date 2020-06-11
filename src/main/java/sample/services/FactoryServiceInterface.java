@@ -7,7 +7,12 @@ import java.util.List;
 public interface FactoryServiceInterface {
     FactoryEntity findEntityById(int id);
 
-    void save(FactoryEntity factoryEntity);
+    public void save(FactoryEntity factoryEntity);
+
+    public void delete(FactoryEntity factoryEntity);
+
+    public List<FactoryEntity> findAllEntities();
+
 
     public String shortestWay(int origId, int destId);
 
@@ -16,4 +21,6 @@ public interface FactoryServiceInterface {
     public List<FactoryEntity> findEntitiesByProductIdWithoutFactoryId(int productId, int factoryId);
 
     FactoryEntity findEntityByName(String name);
+
+    public void saveNewEntity(FactoryEntity factoryEntity);
 }

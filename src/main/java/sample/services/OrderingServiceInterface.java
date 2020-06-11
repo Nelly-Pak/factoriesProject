@@ -20,7 +20,11 @@ public interface OrderingServiceInterface {
 
     public void saveNewEntity(OrderingEntity orderingEntity);
 
-    void save(OrderingEntity orderingEntity);
+    public void save(OrderingEntity orderingEntity);
+
+    public List<OrderingEntity> findEntitiesByIdTransporter(int idTransporter);
+
+    public List<OrderingEntity> findEntitiesByIdFactory(int idFactory);
 
     void deleteById(int id);
 }

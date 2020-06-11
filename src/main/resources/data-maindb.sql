@@ -1,4 +1,9 @@
 SET foreign_key_checks = 0;
+
+DELETE FROM maindb.admin;
+INSERT INTO maindb.admin(id, username, password) VALUES(0, 'admin1', '$2y$16$OTrK1xF9ZVaIGAEwKZ6rieag3kTLAj.hU6qUZAHhLaHog3XcGuv0m'); /*pA1*/
+
+
 DELETE FROM maindb.factory;
 INSERT INTO maindb.factory(id, name, exportid, password) VALUES(1, 'Factory One', 5, '$2y$16$6tbZ.1cbSZyvPfS7KBjf1eDRYD5aiGUxSfijdkCqeJWaZj1aWnYR2'); /*pF1*/
 INSERT INTO maindb.factory(id, name, exportid, password) VALUES(2, 'Factory Two', 1, '$2y$16$.oidnx809LReNTaR6P/3ouqW4btmNIAud8dwFzPUBfzXLHqfu180O'); /*pF2*/
@@ -10,18 +15,18 @@ INSERT INTO maindb.factory(id, name, exportid, password) VALUES(7, 'Factory Seve
 INSERT INTO maindb.factory(id, name, exportid, password) VALUES(8, 'Factory Eight', 4, '$2y$16$jyf3OGb8Fshd8NG8tlSIJevebLqoocNfIXyjfezhhv38Px29G/6AC'); /*pF8*/
 
 DELETE FROM maindb.product;
-INSERT INTO maindb.product(id, name, price_per_unit) VALUES(1, 'Wood', 10);
-INSERT INTO maindb.product(id, name, price_per_unit) VALUES(2, 'Iron', 15);
-INSERT INTO maindb.product(id, name, price_per_unit) VALUES(3, 'Electrical components', 20);
-INSERT INTO maindb.product(id, name, price_per_unit) VALUES(4, 'Car', 100);
-INSERT INTO maindb.product(id, name, price_per_unit) VALUES(5, 'Furniture', 50);
+INSERT INTO maindb.product(id, name) VALUES(1, 'Wood');
+INSERT INTO maindb.product(id, name) VALUES(2, 'Iron');
+INSERT INTO maindb.product(id, name) VALUES(3, 'Electrical components');
+INSERT INTO maindb.product(id, name) VALUES(4, 'Car');
+INSERT INTO maindb.product(id, name) VALUES(5, 'Furniture');
 
 DELETE FROM maindb.transporter;
-INSERT INTO maindb.transporter(id, name, price_per_unit, password) VALUES(1, 'CCC1', 1, '$2y$16$rNQMZBVxYeKuqp.0qpujSOjO0tg6yzSME9DV4VxXbDu0Dom/YTH2a'); /*pT1*/
-INSERT INTO maindb.transporter(id, name, price_per_unit, password) VALUES(2, 'CCC2', 1, '$2y$16$.NP7.fYZSBCe9osNOIJjJOgsulr77qOle3ievVx7wne/FcgOIwA9q'); /*pT2*/
-INSERT INTO maindb.transporter(id, name, price_per_unit, password) VALUES(3, 'CCC3', 1, '$2y$16$QeN/My.qOPCJ.F0izfE7FefTka6C7rq8YixYqAXu9/uIUb0Jp0sn2'); /*pT3*/
-INSERT INTO maindb.transporter(id, name, price_per_unit, password) VALUES(4, 'CCC4', 1, '$2y$16$zcpleK/gEHiG5zhy1MHvZOAja3uBaWgdt1OsBCx2Qm2PC4.d1h4/2'); /*pT4*/
-INSERT INTO maindb.transporter(id, name, price_per_unit, password) VALUES(5, 'CCC5', 1, '$2y$16$IDh1wV7Fk..Yvx..UGXtdeRAtXz7dYXPBfGgZaiyJQ0gOFq5UAAwK'); /*pT5*/
+INSERT INTO maindb.transporter(id, name, password) VALUES(1, 'CCC1', '$2y$16$rNQMZBVxYeKuqp.0qpujSOjO0tg6yzSME9DV4VxXbDu0Dom/YTH2a'); /*pT1*/
+INSERT INTO maindb.transporter(id, name, password) VALUES(2, 'CCC2', '$2y$16$.NP7.fYZSBCe9osNOIJjJOgsulr77qOle3ievVx7wne/FcgOIwA9q'); /*pT2*/
+INSERT INTO maindb.transporter(id, name, password) VALUES(3, 'CCC3', '$2y$16$QeN/My.qOPCJ.F0izfE7FefTka6C7rq8YixYqAXu9/uIUb0Jp0sn2'); /*pT3*/
+INSERT INTO maindb.transporter(id, name, password) VALUES(4, 'CCC4', '$2y$16$zcpleK/gEHiG5zhy1MHvZOAja3uBaWgdt1OsBCx2Qm2PC4.d1h4/2'); /*pT4*/
+INSERT INTO maindb.transporter(id, name, password) VALUES(5, 'CCC5', '$2y$16$IDh1wV7Fk..Yvx..UGXtdeRAtXz7dYXPBfGgZaiyJQ0gOFq5UAAwK'); /*pT5*/
 
 DELETE FROM maindb.ordering;
 INSERT INTO maindb.ordering(id, id_factory, id_product, id_transporter, price, accepted, id_factory_from,distance) VALUES(1, 1, 2, 1, 3000, true, 4,6);
